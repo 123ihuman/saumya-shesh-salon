@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सौम्या एंड शेष हेयर सैलून | Saumya & Shesh Hair Salon</title>
+<style>
+  :root{
+    --red:#e63946; --blue:#1d4ed8; --yellow:#fbbf24; --green:#16a34a;
+    --pink:#ec4899; --purple:#7c3aed; --dark:#1a1a2e; --gold:#ffd166;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:#0f0f1a;
+    color:#222;
+    overflow-x:hidden;
+  }
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+
+  /* ===== TOP NAV BAR ===== */
+  .topbar{
+    position:sticky; top:0; z-index:999;
+    display:flex; align-items:center; justify-content:space-between;
+    background:linear-gradient(90deg,var(--purple),var(--blue),var(--pink));
+    padding:12px 16px;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+  }
+  .nav-left{display:flex; align-items:center; gap:14px;}
+  .icon-btn{
+    background:rgba(255,255,255,.18);
+    border:none; color:#fff; font-size:22px;
+    width:42px;height:42px;border-radius:50%;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:.25s;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,.4); transform:scale(1.1);}
+  .brand-mini{color:#fff; font-weight:bold; font-size:15px;}
+
+  /* ===== DRAWER ===== */
+  .drawer-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.6);
+    display:none; z-index:1000;
+  }
+  .drawer-overlay.active{display:block;}
+  .drawer{
+    position:fixed; top:0; left:-300px; width:280px; height:100%;
+    background:linear-gradient(180deg,#2b0b3f,#1a1a2e);
+    z-index:1001; transition:left .35s ease;
+    padding:20px; box-shadow:4px 0 20px rgba(0,0,0,.5);
+    overflow-y:auto;
+  }
+  .drawer.active{left:0;}
+  .drawer h3{color:var(--gold); font-size:22px; margin-bottom:20px; border-bottom:2px solid var(--pink); padding-bottom:10px;}
+  .drawer ul li{
+    padding:14px 10px; color:#fff; font-size:17px; cursor:pointer;
+    border-radius:8px; margin-bottom:6px; display:flex; align-items:center; gap:10px;
+    transition:.2s;
+  }
+  .drawer ul li:hover{background:rgba(255,255,255,.15); padding-left:18px;}
+  .drawer ul li span.dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);}
+
+  /* ===== HERO / HEADER ===== */
+  .hero{
+    text-align:center; padding:30px 14px 20px;
+    background:radial-gradient(circle at top, #3d0a5c, #0f0f1a 70%);
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(230,57,70,.25), rgba(29,78,216,.25), rgba(236,72,153,.25), rgba(22,163,74,.25));
+    background-size:400% 400%;
+    animation:gradientMove 8s ease infinite;
+    z-index:0;
+  }
+  @keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+  .hero-content{position:relative; z-index:1;}
+  .welcome-txt{
+    font-size:16px; color:var(--gold); letter-spacing:1px;
+    text-transform:uppercase; animation:fadeDown 1.2s ease;
+  }
+  @keyframes fadeDown{from{opacity:0; transform:translateY(-15px);} to{opacity:1; transform:translateY(0);}}
+  .main-title{
+    font-size:42px; font-weight:900; margin:10px 0 4px;
+    background:linear-gradient(90deg,var(--red),var(--yellow),var(--green),var(--blue),var(--purple),var(--pink));
+    background-size:300% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 4s linear infinite, popIn .8s ease;
+    text-shadow:0 0 25px rgba(255,255,255,.15);
+  }
+  @keyframes shine{to{background-position:300% center;}}
+  @keyframes popIn{from{transform:scale(.8);opacity:0;} to{transform:scale(1);opacity:1;}}
+  .sub-title{font-size:16px; color:#eee; margin-bottom:18px;}
+
+  .head-photo-wrap{
+    display:flex; justify-content:center; margin:18px 0;
+  }
+  .head-photo{
+    width:170px; height:170px; border-radius:50%;
+    object-fit:cover; border:5px solid transparent;
+    background:linear-gradient(#1a1a2e,#1a1a2e) padding-box,
+               linear-gradient(90deg,var(--red),var(--yellow),var(--green),var(--blue),var(--purple),var(--pink)) border-box;
+    animation:spinGlow 6s linear infinite, floatY 3s ease-in-out infinite;
+    box-shadow:0 0 35px rgba(236,72,153,.6);
+  }
+  @keyframes spinGlow{0%{filter:hue-rotate(0deg);} 100%{filter:hue-rotate(360deg);}}
+  @keyframes floatY{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+  .head-caption{color:var(--gold); font-weight:bold; margin-top:8px; font-size:15px;}
+
+  .cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
+  .btn{
+    padding:12px 22px; border:none; border-radius:30px; font-size:15px; font-weight:bold;
+    cursor:pointer; color:#fff; transition:.25s;
+  }
+  .btn-book{background:linear-gradient(90deg,var(--red),var(--pink));}
+  .btn-call{background:linear-gradient(90deg,var(--green),var(--blue));}
+  .btn:hover{transform:translateY(-3px) scale(1.05); box-shadow:0 8px 18px rgba(0,0,0,.4);}
+
+  /* ===== TRUST STRIP ===== */
+  .trust-strip{
+    display:flex; overflow-x:auto; gap:10px; padding:16px 10px;
+    background:#12122a;
+  }
+  .trust-card{
+    min-width:150px; background:linear-gradient(135deg,#22223a,#1a1a2e);
+    border-radius:14px; padding:14px; text-align:center; flex-shrink:0;
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .trust-card .num{font-size:22px; font-weight:900; color:var(--yellow);}
+  .trust-card .lbl{font-size:12px; color:#ccc; margin-top:4px;}
+
+  /* ===== AUTO IMAGE SLIDER ===== */
+  .slider-section{padding:20px 14px; background:#0f0f1a;}
+  .section-heading{
+    font-size:26px; font-weight:800; text-align:center; margin-bottom:16px;
+    color:#fff;
+  }
+  .section-heading span{color:var(--pink);}
+  .slider-wrap{
+    position:relative; width:100%; max-width:640px; margin:0 auto;
+    border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.5);
+    border:3px solid var(--purple);
+  }
+  .slides{display:flex; transition:transform .6s ease-in-out;}
+  .slide{min-width:100%; position:relative;}
+  .slide img{width:100%; display:block; height:320px; object-fit:cover;}
+  .slide .cap{
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(0deg, rgba(0,0,0,.85), transparent);
+    color:#fff; padding:14px; font-size:15px; font-weight:bold;
+  }
+  .dots{display:flex; justify-content:center; gap:6px; margin-top:10px;}
+  .dot-i{width:9px;height:9px;border-radius:50%;background:#555; cursor:pointer;}
+  .dot-i.active{background:var(--pink); width:22px; border-radius:6px;}
+
+  /* bottom side-scroll strip */
+  .side-strip{display:flex; gap:10px; overflow-x:auto; padding:16px 10px 6px;}
+  .side-strip img{
+    height:110px; width:90px; object-fit:cover; border-radius:10px; flex-shrink:0;
+    border:2px solid var(--gold);
+  }
+
+  /* ===== CATEGORY GRID ===== */
+  .cat-section{padding:26px 14px; background:linear-gradient(180deg,#0f0f1a,#1a0f2a);}
+  .cat-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:700px; margin:0 auto;
+  }
+  .cat-card{
+    background:#181830; border-radius:16px; overflow:hidden; cursor:pointer;
+    border:2px solid transparent; transition:.3s; position:relative;
+  }
+  .cat-card:nth-child(1){border-color:var(--red);}
+  .cat-card:nth-child(2){border-color:var(--blue);}
+  .cat-card:nth-child(3){border-color:var(--green);}
+  .cat-card:nth-child(4){border-color:var(--yellow);}
+  .cat-card:nth-child(5){border-color:var(--pink);}
+  .cat-card:nth-child(6){border-color:var(--purple);}
+  .cat-card:hover{transform:translateY(-6px) scale(1.02); box-shadow:0 10px 24px rgba(0,0,0,.5);}
+  .cat-card img{width:100%; height:130px; object-fit:cover; display:block;}
+  .cat-card .cat-info{padding:10px;}
+  .cat-card .cat-info h4{color:#fff; font-size:15px;}
+  .cat-card .cat-info p{color:var(--gold); font-size:13px; margin-top:4px;}
+  .cat-sub{
+    display:none; background:#10101f; padding:10px; font-size:13px; color:#ddd;
+  }
+  .cat-sub.open{display:block; animation:fadeDown .3s ease;}
+  .cat-sub ul li{padding:6px 4px; border-bottom:1px dashed #333; display:flex; justify-content:space-between;}
+  .cat-sub ul li b{color:var(--yellow);}
+
+  /* ===== PRICE TABLE ===== */
+  .price-section{padding:26px 14px; background:#0f0f1a;}
+  .price-cards{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; max-width:700px; margin:0 auto;}
+  .price-card{
+    flex:1 1 130px; background:linear-gradient(160deg,#1e1e3a,#141428);
+    border-radius:14px; padding:16px; text-align:center;
+  }
+  .price-card.low{border-top:5px solid var(--green);}
+  .price-card.mid{border-top:5px solid var(--yellow);}
+  .price-card.high{border-top:5px solid var(--red);}
+  .price-card.premium{border-top:5px solid var(--purple);}
+  .price-card h4{color:#fff; font-size:15px;}
+  .price-card .price{font-size:24px; font-weight:900; color:var(--gold); margin:8px 0;}
+  .price-card p{font-size:12px; color:#aaa;}
+
+  /* ===== VIDEO GALLERY ===== */
+  .video-section{padding:26px 14px; background:linear-gradient(180deg,#1a0f2a,#0f0f1a);}
+  .video-scroll{display:flex; gap:12px; overflow-x:auto; padding-bottom:10px;}
+  .video-scroll video{
+    width:180px; height:320px; object-fit:cover; border-radius:14px; flex-shrink:0;
+    border:3px solid var(--pink);
+  }
+
+  /* ===== BOOKING FORM ===== */
+  .form-section{padding:30px 14px; background:#0f0f1a;}
+  .form-box{
+    max-width:520px; margin:0 auto; background:linear-gradient(160deg,#1e1e3a,#12122a);
+    border-radius:20px; padding:22px; border:2px solid var(--purple);
+    box-shadow:0 0 30px rgba(124,58,237,.3);
+  }
+  .form-box h3{
+    text-align:center; font-size:22px; margin-bottom:6px;
+    background:linear-gradient(90deg,var(--red),var(--yellow),var(--green),var(--blue));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .form-box .note{text-align:center; color:#aaa; font-size:12px; margin-bottom:16px;}
+  .form-group{margin-bottom:14px;}
+  .form-group label{display:block; color:#fff; font-size:14px; margin-bottom:6px; font-weight:bold;}
+  .form-group input, .form-group select, .form-group textarea{
+    width:100%; padding:11px; border-radius:8px; border:none; outline:none;
+    background:#fff; font-size:14px;
+  }
+  .row2{display:flex; gap:10px;}
+  .row2 .form-group{flex:1;}
+  .submit-btn{
+    width:100%; padding:14px; border:none; border-radius:30px; font-size:17px; font-weight:bold;
+    color:#fff; background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));
+    cursor:pointer; margin-top:6px;
+  }
+  .submit-btn:hover{filter:brightness(1.15);}
+
+  /* ===== FOOTER / OWNER ===== */
+  .owner-section{
+    padding:36px 14px 50px; text-align:center;
+    background:radial-gradient(circle at bottom, #3d0a5c, #0f0f1a 70%);
+  }
+  .owner-photo{
+    width:150px; height:150px; border-radius:20px; object-fit:cover;
+    border:4px solid var(--gold); box-shadow:0 0 30px rgba(255,209,102,.5);
+  }
+  .owner-name{font-size:22px; font-weight:900; color:#fff; margin-top:14px;}
+  .owner-role{color:var(--pink); font-size:14px; margin-top:4px;}
+  .owner-details{color:#ccc; font-size:13px; margin-top:10px; line-height:1.8;}
+  .owner-details b{color:var(--yellow);}
+  .footer-bottom{margin-top:20px; font-size:12px; color:#666;}
+
+  /* Toast for exit message */
+  .toast{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(100px);
+    background:linear-gradient(90deg,var(--green),var(--blue));
+    color:#fff; padding:14px 24px; border-radius:30px; font-weight:bold;
+    z-index:2000; transition:.4s; opacity:0;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0); opacity:1;}
+
+  @media(min-width:700px){
+    .cat-grid{grid-template-columns:repeat(3,1fr);}
+    .main-title{font-size:60px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP NAV ===== -->
+<div class="topbar">
+  <div class="nav-left">
+    <button class="icon-btn" id="drawerBtn">&#9776;</button>
+    <button class="icon-btn" onclick="history.back()">&#8592;</button>
+    <button class="icon-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8962;</button>
+  </div>
+  <div class="brand-mini">सौम्या एंड शेष हेयर सैलून</div>
+</div>
+
+<!-- ===== DRAWER ===== -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawer">
+  <h3>☰ मेन्यू</h3>
+  <ul>
+    <li onclick="scrollToId('formSection')"><span class="dot"></span> रजिस्टर करें / Register</li>
+    <li onclick="scrollToId('formSection')"><span class="dot"></span> लॉगिन / Login</li>
+    <li onclick="scrollToId('catSection')"><span class="dot"></span> हेयरस्टाइल कैटेगरी</li>
+    <li onclick="scrollToId('catSection')"><span class="dot"></span> बियर्ड स्टाइल</li>
+    <li onclick="scrollToId('catSection')"><span class="dot"></span> हेयर कलर</li>
+    <li onclick="callNow()"><span class="dot"></span> कॉल हेल्प / Call Help</li>
+    <li onclick="openWhats('कृपया मेरी शिकायत सुनें: ')"><span class="dot"></span> शिकायत / Complaint</li>
+    <li onclick="openWhats('मेरा फीडबैक: ')"><span class="dot"></span> फीडबैक / Feedback</li>
+    <li onclick="scrollToId('formSection')"><span class="dot"></span> संपर्क करें / Contact</li>
+    <li onclick="exitSite()"><span class="dot"></span> बाहर जाएं / Exit</li>
+  </ul>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="welcome-txt">✨ Welcome to Our Official Website ✨</div>
+    <h1 class="main-title">सौम्या एंड शेष<br>हेयर सैलून</h1>
+    <p class="sub-title">हर स्टाइल में भरोसा • Beauty • Style • Trust — सभी उम्र के लिए</p>
+
+    <div class="head-photo-wrap">
+      <div style="text-align:center">
+        <img src="images/head-person.jpg" alt="Salon Head" class="head-photo">
+        <div class="head-caption">— हमारी टीम की झलक —</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn btn-book" onclick="scrollToId('formSection')">📅 अभी बुक करें</button>
+      <button class="btn btn-call" onclick="callNow()">📞 कॉल करें</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRUST STRIP ===== -->
+<div class="trust-strip">
+  <div class="trust-card"><div class="num">Since 2018</div><div class="lbl">भरोसेमंद सैलून सेवा</div></div>
+  <div class="trust-card"><div class="num">6+ Styles</div><div class="lbl">कैटेगरी उपलब्ध</div></div>
+  <div class="trust-card"><div class="num">₹20 - ₹1000</div><div class="lbl">बजट रेंज सभी के लिए</div></div>
+  <div class="trust-card"><div class="num">Men·Women·Kids</div><div class="lbl">सभी के लिए सेवा</div></div>
+  <div class="trust-card"><div class="num">WhatsApp</div><div class="lbl">Direct Booking</div></div>
+</div>
+
+<!-- ===== AUTO SLIDER ===== -->
+<div class="slider-section">
+  <h2 class="section-heading">✨ हमारी <span>हेयरस्टाइल गैलरी</span> ✨</h2>
+  <div class="slider-wrap">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="images/women1.jpg"><div class="cap">🌸 वीमेंस लॉन्ग हेयर स्टाइल कलेक्शन</div></div>
+      <div class="slide"><img src="images/men-cut.jpg"><div class="cap">💈 मेंस स्टाइलिश हेयरकट</div></div>
+      <div class="slide"><img src="images/kids-girls.jpg"><div class="cap">👧 किड्स गर्ल्स ब्राइडल/पार्टी स्टाइल</div></div>
+      <div class="slide"><img src="images/men-beard1.jpg"><div class="cap">🧔 प्रीमियम बियर्ड स्टाइल</div></div>
+      <div class="slide"><img src="images/hair-colour.jpg"><div class="cap">🎨 हेयर कलर शेड्स — Cherry, Mocha, Plum</div></div>
+      <div class="slide"><img src="images/kids-boys.jpg"><div class="cap">👦 किड्स बॉयज़ हेयरकट स्टाइल</div></div>
+      <div class="slide"><img src="images/mustache.jpg"><div class="cap">✂️ 20 टाइप्स मूंछ स्टाइल</div></div>
+      <div class="slide"><img src="images/women-service.jpg"><div class="cap">💇‍♀️ लाइव सैलून सर्विस</div></div>
+    </div>
+  </div>
+  <div class="dots" id="dots"></div>
+
+  <div class="side-strip" id="sideStrip"></div>
+</div>
+
+<!-- ===== CATEGORIES ===== -->
+<div class="cat-section" id="catSection">
+  <h2 class="section-heading">🔥 सर्विस <span>कैटेगरी</span> चुनें 🔥</h2>
+  <div class="cat-grid">
+
+    <div class="cat-card" onclick="toggleSub('sub1')">
+      <img src="images/women1.jpg">
+      <div class="cat-info"><h4>👩 वीमेंस हेयरस्टाइल</h4><p>₹100 - ₹1000</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub2')">
+      <img src="images/men-cut.jpg">
+      <div class="cat-info"><h4>👨 मेंस हेयरकट</h4><p>₹50 - ₹300</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub3')">
+      <img src="images/men-beard2.jpg">
+      <div class="cat-info"><h4>🧔 बियर्ड स्टाइल</h4><p>₹30 - ₹200</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub4')">
+      <img src="images/mustache.jpg">
+      <div class="cat-info"><h4>👨‍🦰 मूंछ स्टाइल</h4><p>₹20 - ₹100</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub5')">
+      <img src="images/kids-girls.jpg">
+      <div class="cat-info"><h4>👧 किड्स गर्ल्स</h4><p>₹50 - ₹300</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub6')">
+      <img src="images/kids-boys.jpg">
+      <div class="cat-info"><h4>👦 किड्स बॉयज़</h4><p>₹40 - ₹200</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub7')">
+      <img src="images/hair-colour.jpg">
+      <div class="cat-info"><h4>🎨 हेयर कलर</h4><p>₹150 - ₹1000</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub8')">
+      <img src="images/men-shave.jpg">
+      <div class="cat-info"><h4>🪒 शेव / फेस स्टाइलिंग</h4><p>₹20 - ₹100</p></div>
+    </div>
+    <div class="cat-card" onclick="toggleSub('sub9')">
+      <img src="images/women-service.jpg">
+      <div class="cat-info"><h4>💆‍♀️ हेयर स्पा / ट्रीटमेंट</h4><p>₹200 - ₹1000</p></div>
+    </div>
+  </div>
+
+  <!-- Sub-category detail panels -->
+  <div class="cat-sub" id="sub1">
+    <ul>
+      <li>लॉन्ग लेयर कट <b>₹250</b></li>
+      <li>स्ट्रेट फ्रिंज कट <b>₹200</b></li>
+      <li>बॉब कट <b>₹180</b></li>
+      <li>बाउंसी कर्ल्स स्टाइलिंग <b>₹350</b></li>
+      <li>ब्राइडल हेयर अप-डू <b>₹1000</b></li>
+      <li>वेवी ब्लोड्राई <b>₹150</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub2">
+    <ul>
+      <li>बेसिक कट <b>₹50</b></li>
+      <li>फेड कट <b>₹120</b></li>
+      <li>अंडरकट स्टाइल <b>₹150</b></li>
+      <li>पॉम्पडोर स्टाइल <b>₹200</b></li>
+      <li>क्रू कट <b>₹80</b></li>
+      <li>प्रीमियम स्टाइलिंग + वॉश <b>₹300</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub3">
+    <ul>
+      <li>बेसिक ट्रिम <b>₹30</b></li>
+      <li>फुल बियर्ड शेप <b>₹100</b></li>
+      <li>फेड बियर्ड लाइन-अप <b>₹150</b></li>
+      <li>डिज़ाइनर बियर्ड <b>₹200</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub4">
+    <ul>
+      <li>हैंडलबार <b>₹40</b></li>
+      <li>शेवरॉन <b>₹30</b></li>
+      <li>हॉर्सशू <b>₹50</b></li>
+      <li>पेंसिल मूंछ <b>₹20</b></li>
+      <li>इंपीरियल स्टाइल <b>₹100</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub5">
+    <ul>
+      <li>पोनीटेल + फ्लावर <b>₹100</b></li>
+      <li>ब्रेड्स स्टाइल <b>₹150</b></li>
+      <li>बन + टियारा <b>₹200</b></li>
+      <li>पार्टी कर्ल्स <b>₹300</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub6">
+    <ul>
+      <li>बेसिक बॉय कट <b>₹40</b></li>
+      <li>स्पाइकी स्टाइल <b>₹80</b></li>
+      <li>साइड पार्ट फेड <b>₹120</b></li>
+      <li>स्टाइलिश टॉप कर्ल <b>₹200</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub7">
+    <ul>
+      <li>हाईलाइट्स (पार्शियल) <b>₹300</b></li>
+      <li>चेरी रेड फुल कलर <b>₹700</b></li>
+      <li>मोका ब्राउन शेड <b>₹650</b></li>
+      <li>प्लम रेड + ग्लॉस <b>₹1000</b></li>
+      <li>ग्लोबल कलर टच-अप <b>₹500</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub8">
+    <ul>
+      <li>क्लासिक शेव <b>₹20</b></li>
+      <li>हॉट टॉवल शेव <b>₹50</b></li>
+      <li>फेस क्लीन-अप <b>₹100</b></li>
+    </ul>
+  </div>
+  <div class="cat-sub" id="sub9">
+    <ul>
+      <li>हेयर स्पा बेसिक <b>₹250</b></li>
+      <li>केराटिन ट्रीटमेंट <b>₹1000</b></li>
+      <li>डीप कंडीशनिंग <b>₹300</b></li>
+      <li>हेयर स्मूदनिंग <b>₹1000</b></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== PRICE OVERVIEW ===== -->
+<div class="price-section">
+  <h2 class="section-heading">💰 प्राइस <span>रेंज</span> गाइड 💰</h2>
+  <div class="price-cards">
+    <div class="price-card low">
+      <h4>लो बजट</h4>
+      <div class="price">₹20 - ₹99</div>
+      <p>ट्रिम, शेव, मूंछ स्टाइल</p>
+    </div>
+    <div class="price-card mid">
+      <h4>मीडियम बजट</h4>
+      <div class="price">₹100 - ₹299</div>
+      <p>हेयरकट, बियर्ड शेप</p>
+    </div>
+    <div class="price-card high">
+      <h4>हाई बजट</h4>
+      <div class="price">₹300</div>
+      <p>स्टाइलिंग, स्पा, कलर</p>
+    </div>
+    <div class="price-card premium">
+      <h4>एडवांस्ड</h4>
+      <div class="price">₹1000</div>
+      <p>ब्राइडल, केराटिन, फुल कलर</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VIDEO GALLERY ===== -->
+<div class="video-section">
+  <h2 class="section-heading">🎬 वीडियो <span>गैलरी</span> 🎬</h2>
+  <div class="video-scroll">
+    <video src="videos/video1.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video2.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video3.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video4.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video5.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video6.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video7.mp4" muted loop autoplay playsinline></video>
+  </div>
+</div>
+
+<!-- ===== BOOKING FORM ===== -->
+<div class="form-section" id="formSection">
+  <div class="form-box">
+    <h3>📋 बुकिंग / रजिस्ट्रेशन फॉर्म</h3>
+    <p class="note">फॉर्म भरें — सबमिट करते ही डिटेल्स सीधे हमारे WhatsApp पर पहुंच जाएंगी</p>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label>पूरा नाम / Full Name</label>
+        <input type="text" id="fname" required placeholder="जैसे: रमेश कुमार">
+      </div>
+      <div class="form-group">
+        <label>पता / Address (राज्य, जिला, गाँव/शहर)</label>
+        <input type="text" id="faddress" required placeholder="राज्य - जिला - गाँव/शहर">
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>मोबाइल नंबर</label>
+          <input type="tel" id="fmobile" required placeholder="10 अंकों का नंबर" pattern="[0-9]{10}">
+        </div>
+        <div class="form-group">
+          <label>उम्र / Age</label>
+          <input type="number" id="fage" required min="1" max="100" placeholder="उम्र">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>लिंग / Gender</label>
+          <select id="fgender">
+            <option>पुरुष / Male</option>
+            <option>महिला / Female</option>
+            <option>बच्चा (लड़का)</option>
+            <option>बच्ची (लड़की)</option>
+            <option>अन्य / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>हेयरस्टाइल चुनें</label>
+          <select id="fstyle">
+            <option>लॉन्ग लेयर कट (महिला)</option>
+            <option>बॉब कट (महिला)</option>
+            <option>ब्राइडल अप-डू</option>
+            <option>फेड कट (पुरुष)</option>
+            <option>पॉम्पडोर (पुरुष)</option>
+            <option>क्रू कट (पुरुष)</option>
+            <option>फुल बियर्ड शेप</option>
+            <option>डिज़ाइनर बियर्ड</option>
+            <option>हैंडलबार मूंछ</option>
+            <option>इंपीरियल मूंछ</option>
+            <option>किड्स बॉय कट</option>
+            <option>किड्स गर्ल पार्टी स्टाइल</option>
+            <option>हेयर कलर - चेरी रेड</option>
+            <option>हेयर कलर - मोका ब्राउन</option>
+            <option>केराटिन ट्रीटमेंट</option>
+            <option>हेयर स्पा</option>
+            <option>क्लासिक शेव</option>
+            <option>अन्य / Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>बजट रेंज (₹)</label>
+          <select id="fbudget">
+            <option>₹20 - ₹99 (लो)</option>
+            <option>₹100 - ₹299 (मीडियम)</option>
+            <option>₹300 (हाई)</option>
+            <option>₹1000 (एडवांस्ड)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>एडवांस बुकिंग स्लॉट फीस</label>
+          <select id="fslot">
+            <option>₹20</option>
+            <option>₹50</option>
+            <option>₹100</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>तारीख / Date</label>
+          <input type="date" id="fdate" required>
+        </div>
+        <div class="form-group">
+          <label>समय / Time</label>
+          <input type="time" id="ftime" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>अतिरिक्त जानकारी (वैकल्पिक)</label>
+        <textarea id="fnote" rows="2" placeholder="कोई खास मांग हो तो लिखें..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">✅ सबमिट करें → WhatsApp पर भेजें</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== OWNER / DEVELOPER FOOTER ===== -->
+<div class="owner-section">
+  <img src="images/owner-divy.jpg" class="owner-photo" alt="Owner and Developer">
+  <div class="owner-name">DIVY</div>
+  <div class="owner-role">Website Owner &amp; Developer</div>
+  <div class="owner-details">
+    <b>IIT Mains Engineering Qualified</b><br>
+    <b>Ex - BSF (Army)</b> | <b>Ex - Indian Bank Employee</b><br>
+    📱 Mobile: <b>9369224174</b><br>
+    ✉️ Email: <b>umadivy500@gmail.com</b>
+  </div>
+  <div class="footer-bottom">© सौम्या एंड शेष हेयर सैलून — सभी अधिकार सुरक्षित</div>
+</div>
+
+<div class="toast" id="toast">🙏 धन्यवाद, फिर से पधारें! Thanks, Visit Again!</div>
+
+<script>
+  const WHATSAPP_NUMBER = "919369224174";
+
+  // Drawer
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawerOverlay');
+  document.getElementById('drawerBtn').onclick = () => {
+    drawer.classList.add('active'); overlay.classList.add('active');
+  };
+  overlay.onclick = () => {
+    drawer.classList.remove('active'); overlay.classList.remove('active');
+  };
+  function scrollToId(id){
+    drawer.classList.remove('active'); overlay.classList.remove('active');
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  }
+  function callNow(){
+    drawer.classList.remove('active'); overlay.classList.remove('active');
+    window.location.href = "tel:+919369224174";
+  }
+  function openWhats(prefix){
+    drawer.classList.remove('active'); overlay.classList.remove('active');
+    const msg = encodeURIComponent(prefix);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  }
+  function exitSite(){
+    drawer.classList.remove('active'); overlay.classList.remove('active');
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 3500);
+  }
+
+  // Category sub-toggles
+  function toggleSub(id){
+    document.querySelectorAll('.cat-sub').forEach(el=>{
+      if(el.id !== id) el.classList.remove('open');
+    });
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  // Auto slider
+  const slidesWrap = document.getElementById('slides');
+  const slideCount = document.querySelectorAll('.slide').length;
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+  for(let i=0;i<slideCount;i++){
+    const d = document.createElement('div');
+    d.className = 'dot-i' + (i===0 ? ' active' : '');
+    d.onclick = () => { current = i; updateSlide(); };
+    dotsWrap.appendChild(d);
+  }
+  function updateSlide(){
+    slidesWrap.style.transform = `translateX(-${current*100}%)`;
+    document.querySelectorAll('.dot-i').forEach((d,i)=>{
+      d.classList.toggle('active', i===current);
+    });
+  }
+  setInterval(()=>{
+    current = (current+1) % slideCount;
+    updateSlide();
+  }, 2500); // 2.5 second auto slide
+
+  // Bottom side strip (mirrors gallery images small thumbnails)
+  const sideImgs = ["women1.jpg","men-cut.jpg","kids-girls.jpg","men-beard1.jpg","hair-colour.jpg","kids-boys.jpg","mustache.jpg","women-service.jpg","men-beard2.jpg","men-shave.jpg"];
+  const strip = document.getElementById('sideStrip');
+  sideImgs.forEach(src=>{
+    const img = document.createElement('img');
+    img.src = "images/" + src;
+    strip.appendChild(img);
+  });
+
+  // Booking form submit -> WhatsApp
+  document.getElementById('bookingForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('fname').value;
+    const address = document.getElementById('faddress').value;
+    const mobile = document.getElementById('fmobile').value;
+    const age = document.getElementById('fage').value;
+    const gender = document.getElementById('fgender').value;
+    const style = document.getElementById('fstyle').value;
+    const budget = document.getElementById('fbudget').value;
+    const slot = document.getElementById('fslot').value;
+    const date = document.getElementById('fdate').value;
+    const time = document.getElementById('ftime').value;
+    const note = document.getElementById('fnote').value;
+
+    const message =
+`नई बुकिंग - सौम्या एंड शेष हेयर सैलून
+--------------------------------
+नाम: ${name}
+पता: ${address}
+मोबाइल: ${mobile}
+उम्र: ${age}
+लिंग: ${gender}
+हेयरस्टाइल: ${style}
+बजट: ${budget}
+स्लॉट फीस: ${slot}
+तारीख: ${date}
+समय: ${time}
+नोट: ${note || "-"}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, "_blank");
+  });
+</script>
+
+</body>
+</html>
