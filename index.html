@@ -209,6 +209,55 @@
 
   /* ===== VIDEO GALLERY ===== */
   .video-section{padding:26px 14px; background:linear-gradient(180deg,#1a0f2a,#0f0f1a);}
+
+  /* ===== STYLE WALL (repeated gallery) ===== */
+  .wall-section{padding:26px 14px; background:#0f0f1a;}
+  .wall-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:6px; max-width:700px; margin:0 auto;}
+  .wall-grid img{width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,.1);}
+  .wall-grid img:hover{transform:scale(1.03);}
+
+  /* ===== FEATURES / WHY US ===== */
+  .features-section{padding:26px 14px; background:linear-gradient(180deg,#0f0f1a,#1a0f2a);}
+  .feat-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:700px; margin:0 auto;}
+  .feat-card{background:#181830; border-radius:14px; padding:18px 12px; text-align:center; border-bottom:3px solid var(--pink);}
+  .feat-card .emo{font-size:32px;}
+  .feat-card h4{color:#fff; font-size:14px; margin-top:8px;}
+  .feat-card p{color:#aaa; font-size:12px; margin-top:4px;}
+
+  /* ===== FULL PRICE LIST (expanded, no toggle) ===== */
+  .fulllist-section{padding:26px 14px; background:#0f0f1a;}
+  .fulllist-block{max-width:700px; margin:0 auto 22px; background:#14142a; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08);}
+  .fulllist-block h3{
+    padding:12px 16px; font-size:16px; color:#fff;
+    background:linear-gradient(90deg,var(--purple),var(--pink));
+  }
+  .fulllist-block ul li{
+    display:flex; justify-content:space-between; padding:10px 16px;
+    border-bottom:1px solid rgba(255,255,255,.06); color:#ddd; font-size:14px;
+  }
+  .fulllist-block ul li b{color:var(--gold);}
+  .fulllist-block ul li:nth-child(even){background:rgba(255,255,255,.02);}
+
+  /* ===== REELS / VIDEO GRID SECOND SHOWCASE ===== */
+  .reels-section{padding:26px 14px; background:linear-gradient(180deg,#1a0f2a,#0f0f1a);}
+  .reels-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; max-width:700px; margin:0 auto;}
+  .reels-grid video{width:100%; height:220px; object-fit:cover; border-radius:12px; border:2px solid var(--purple);}
+
+  /* ===== BEFORE/AFTER STRIP ===== */
+  .compare-section{padding:26px 14px; background:#0f0f1a;}
+  .compare-scroll{display:flex; gap:12px; overflow-x:auto; padding-bottom:8px;}
+  .compare-card{min-width:220px; background:#181830; border-radius:14px; overflow:hidden; flex-shrink:0; border:1px solid rgba(255,255,255,.1);}
+  .compare-card img{width:100%; height:260px; object-fit:cover;}
+  .compare-card .cc-label{padding:8px 10px; color:var(--gold); font-size:13px; font-weight:bold;}
+
+  /* ===== FAQ ===== */
+  .faq-section{padding:26px 14px 40px; background:linear-gradient(180deg,#0f0f1a,#1a0f2a);}
+  .faq-item{max-width:700px; margin:0 auto 10px; background:#181830; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.08);}
+  .faq-q{padding:14px 16px; color:#fff; font-size:14px; font-weight:bold; display:flex; justify-content:space-between; cursor:pointer;}
+  .faq-a{max-height:0; overflow:hidden; transition:.3s; padding:0 16px; color:#bbb; font-size:13px;}
+  .faq-a.open{max-height:200px; padding:0 16px 14px;}
+  .faq-q .arrow{transition:.3s;}
+  .faq-q .arrow.rot{transform:rotate(180deg);}
   .video-scroll{display:flex; gap:12px; overflow-x:auto; padding-bottom:10px;}
   .video-scroll video{
     width:180px; height:320px; object-fit:cover; border-radius:14px; flex-shrink:0;
@@ -476,6 +525,45 @@
   </div>
 </div>
 
+<!-- ===== STYLE WALL ===== -->
+<div class="wall-section">
+  <h2 class="section-heading">📸 स्टाइल <span>वॉल</span> 📸</h2>
+  <div class="wall-grid">
+    <img src="images/women1.jpg"><img src="images/men-cut.jpg"><img src="images/men-beard1.jpg">
+    <img src="images/hair-colour.jpg"><img src="images/kids-girls.jpg"><img src="images/kids-boys.jpg">
+    <img src="images/mustache.jpg"><img src="images/women-service.jpg"><img src="images/men-beard2.jpg">
+    <img src="images/men-shave.jpg"><img src="images/men-beard3.jpg"><img src="images/head-person.jpg">
+    <img src="images/women1.jpg"><img src="images/hair-colour.jpg"><img src="images/men-cut.jpg">
+  </div>
+</div>
+
+<!-- ===== FEATURES / WHY CHOOSE US ===== -->
+<div class="features-section">
+  <h2 class="section-heading">⭐ क्यों चुनें <span>हमें</span> ⭐</h2>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="emo">💈</div><h4>अनुभवी स्टाइलिस्ट</h4><p>हर उम्र और स्टाइल के लिए ट्रेंड expert टीम</p></div>
+    <div class="feat-card"><div class="emo">💰</div><h4>बजट फ्रेंडली</h4><p>₹20 से ₹1000 तक — हर जेब के लिए सर्विस</p></div>
+    <div class="feat-card"><div class="emo">🧴</div><h4>साफ-सफाई का ध्यान</h4><p>हर टूल sanitize, स्वच्छ माहौल</p></div>
+    <div class="feat-card"><div class="emo">📱</div><h4>आसान ऑनलाइन बुकिंग</h4><p>WhatsApp पर सीधे स्लॉट बुक करें</p></div>
+    <div class="feat-card"><div class="emo">👨‍👩‍👧‍👦</div><h4>पूरे परिवार के लिए</h4><p>मेंस, वीमेंस, किड्स — सबकी सर्विस एक जगह</p></div>
+    <div class="feat-card"><div class="emo">⏱️</div><h4>समय की पाबंदी</h4><p>तय समय पर सर्विस, कोई इंतजार नहीं</p></div>
+  </div>
+</div>
+
+<!-- ===== BEFORE / AFTER STYLE STRIP ===== -->
+<div class="compare-section">
+  <h2 class="section-heading">🔄 पॉपुलर <span>लुक्स</span> 🔄</h2>
+  <div class="compare-scroll">
+    <div class="compare-card"><img src="images/men-beard1.jpg"><div class="cc-label">प्रीमियम बियर्ड लुक</div></div>
+    <div class="compare-card"><img src="images/women1.jpg"><div class="cc-label">लॉन्ग लेयर स्टाइल</div></div>
+    <div class="compare-card"><img src="images/men-cut.jpg"><div class="cc-label">फेड हेयरकट</div></div>
+    <div class="compare-card"><img src="images/hair-colour.jpg"><div class="cc-label">कलर शेड्स</div></div>
+    <div class="compare-card"><img src="images/kids-girls.jpg"><div class="cc-label">किड्स पार्टी स्टाइल</div></div>
+    <div class="compare-card"><img src="images/mustache.jpg"><div class="cc-label">मूंछ स्टाइलिंग</div></div>
+    <div class="compare-card"><img src="images/women-service.jpg"><div class="cc-label">सैलून सर्विस</div></div>
+  </div>
+</div>
+
 <!-- ===== PRICE OVERVIEW ===== -->
 <div class="price-section">
   <h2 class="section-heading">💰 प्राइस <span>रेंज</span> गाइड 💰</h2>
@@ -514,6 +602,139 @@
     <video src="videos/video5.mp4" muted loop autoplay playsinline></video>
     <video src="videos/video6.mp4" muted loop autoplay playsinline></video>
     <video src="videos/video7.mp4" muted loop autoplay playsinline></video>
+  </div>
+</div>
+
+<!-- ===== REELS SHOWCASE (second video grid) ===== -->
+<div class="reels-section">
+  <h2 class="section-heading">🔥 ट्रेंडिंग <span>रील्स</span> 🔥</h2>
+  <div class="reels-grid">
+    <video src="videos/video3.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video5.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video1.mp4" muted loop autoplay playsinline></video>
+    <video src="videos/video6.mp4" muted loop autoplay playsinline></video>
+  </div>
+</div>
+
+<!-- ===== FULL SERVICE PRICE LIST (expanded, all categories) ===== -->
+<div class="fulllist-section">
+  <h2 class="section-heading">📋 पूरी <span>प्राइस लिस्ट</span> 📋</h2>
+
+  <div class="fulllist-block">
+    <h3>👩 वीमेंस हेयरस्टाइल</h3>
+    <ul>
+      <li>लॉन्ग लेयर कट <b>₹250</b></li>
+      <li>स्ट्रेट फ्रिंज कट <b>₹200</b></li>
+      <li>बॉब कट <b>₹180</b></li>
+      <li>बाउंसी कर्ल्स स्टाइलिंग <b>₹350</b></li>
+      <li>ब्राइडल हेयर अप-डू <b>₹1000</b></li>
+      <li>वेवी ब्लोड्राई <b>₹150</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>👨 मेंस हेयरकट</h3>
+    <ul>
+      <li>बेसिक कट <b>₹50</b></li>
+      <li>फेड कट <b>₹120</b></li>
+      <li>अंडरकट स्टाइल <b>₹150</b></li>
+      <li>पॉम्पडोर स्टाइल <b>₹200</b></li>
+      <li>क्रू कट <b>₹80</b></li>
+      <li>प्रीमियम स्टाइलिंग + वॉश <b>₹300</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>🧔 बियर्ड स्टाइल</h3>
+    <ul>
+      <li>बेसिक ट्रिम <b>₹30</b></li>
+      <li>फुल बियर्ड शेप <b>₹100</b></li>
+      <li>फेड बियर्ड लाइन-अप <b>₹150</b></li>
+      <li>डिज़ाइनर बियर्ड <b>₹200</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>👨‍🦰 मूंछ स्टाइल</h3>
+    <ul>
+      <li>हैंडलबार <b>₹40</b></li>
+      <li>शेवरॉन <b>₹30</b></li>
+      <li>हॉर्सशू <b>₹50</b></li>
+      <li>पेंसिल मूंछ <b>₹20</b></li>
+      <li>इंपीरियल स्टाइल <b>₹100</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>👧 किड्स गर्ल्स</h3>
+    <ul>
+      <li>पोनीटेल + फ्लावर <b>₹100</b></li>
+      <li>ब्रेड्स स्टाइल <b>₹150</b></li>
+      <li>बन + टियारा <b>₹200</b></li>
+      <li>पार्टी कर्ल्स <b>₹300</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>👦 किड्स बॉयज़</h3>
+    <ul>
+      <li>बेसिक बॉय कट <b>₹40</b></li>
+      <li>स्पाइकी स्टाइल <b>₹80</b></li>
+      <li>साइड पार्ट फेड <b>₹120</b></li>
+      <li>स्टाइलिश टॉप कर्ल <b>₹200</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>🎨 हेयर कलर</h3>
+    <ul>
+      <li>हाईलाइट्स (पार्शियल) <b>₹300</b></li>
+      <li>चेरी रेड फुल कलर <b>₹700</b></li>
+      <li>मोका ब्राउन शेड <b>₹650</b></li>
+      <li>प्लम रेड + ग्लॉस <b>₹1000</b></li>
+      <li>ग्लोबल कलर टच-अप <b>₹500</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>🪒 शेव / फेस स्टाइलिंग</h3>
+    <ul>
+      <li>क्लासिक शेव <b>₹20</b></li>
+      <li>हॉट टॉवल शेव <b>₹50</b></li>
+      <li>फेस क्लीन-अप <b>₹100</b></li>
+    </ul>
+  </div>
+
+  <div class="fulllist-block">
+    <h3>💆‍♀️ हेयर स्पा / ट्रीटमेंट</h3>
+    <ul>
+      <li>हेयर स्पा बेसिक <b>₹250</b></li>
+      <li>केराटिन ट्रीटमेंट <b>₹1000</b></li>
+      <li>डीप कंडीशनिंग <b>₹300</b></li>
+      <li>हेयर स्मूदनिंग <b>₹1000</b></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== FAQ SECTION ===== -->
+<div class="faq-section">
+  <h2 class="section-heading">❓ अक्सर पूछे जाने वाले <span>सवाल</span> ❓</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">बुकिंग कैसे करें? <span class="arrow">▼</span></div>
+    <div class="faq-a">नीचे दिए गए फॉर्म में अपनी डिटेल्स भरें और सबमिट करें — यह सीधे हमारे WhatsApp पर पहुंच जाएगा, हम कन्फर्म कर देंगे।</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">क्या advance payment जरूरी है? <span class="arrow">▼</span></div>
+    <div class="faq-a">एडवांस बुकिंग स्लॉट फीस वैकल्पिक है (₹20-₹100) — यह आपकी जगह पक्की करने के लिए है, बाकी भुगतान सर्विस के बाद।</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">क्या किड्स के लिए अलग सर्विस है? <span class="arrow">▼</span></div>
+    <div class="faq-a">जी हां, लड़कों और लड़कियों दोनों के लिए अलग हेयरस्टाइल कैटेगरी है, उम्र के हिसाब से बेहतरीन स्टाइलिंग।</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">समय बदलना हो तो? <span class="arrow">▼</span></div>
+    <div class="faq-a">कॉल हेल्प या WhatsApp पर संपर्क करके अपनी बुकिंग का समय आसानी से बदल सकते हैं।</div>
   </div>
 </div>
 
@@ -660,6 +881,20 @@
     const toast = document.getElementById('toast');
     toast.classList.add('show');
     setTimeout(()=>toast.classList.remove('show'), 3500);
+  }
+
+  // FAQ toggle
+  function toggleFaq(el){
+    const ans = el.nextElementSibling;
+    const arrow = el.querySelector('.arrow');
+    document.querySelectorAll('.faq-a').forEach(a=>{
+      if(a !== ans){ a.classList.remove('open'); }
+    });
+    document.querySelectorAll('.arrow').forEach(a=>{
+      if(a !== arrow){ a.classList.remove('rot'); }
+    });
+    ans.classList.toggle('open');
+    arrow.classList.toggle('rot');
   }
 
   // Category sub-toggles
